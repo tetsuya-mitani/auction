@@ -20,6 +20,19 @@ class ItemsController < ApplicationController
     redirect_to "/items/#{@item.id}"
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    # formから投げられたデータを受け取る
+    @item = Item.find(params[:id])
+    @item.update_attributes(item_params)
+
+    # show.html.erbに飛ばす
+    redirect_to "/items/#{@item.id}"
+  end
+
   private
   def item_params
     # params.require(:key).permit(:filter)
